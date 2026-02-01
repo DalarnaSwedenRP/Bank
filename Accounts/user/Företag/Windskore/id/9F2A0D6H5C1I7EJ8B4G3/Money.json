@@ -3,6 +3,11 @@
   "accountNumber": "9074-2816-5539-6042",
   "currency": "SEK",
   "transactions": [
+    {
+      "date": "2026-02-01",
+      "description": "Staten - mark",
+      "amount": -500 000 000.00
+    },
      {
       "date": "2026-02-01",
       "description": "Skatt (5%), betalat på allt under",
@@ -76,6 +81,7 @@
   ]
 
 }
+
 
 
 
