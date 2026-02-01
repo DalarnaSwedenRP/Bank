@@ -5,6 +5,11 @@
   "transactions": [
     {
       "date": "2026-02-01",
+      "description": "Dalarna Sweden RP - Lån - Ej Avbetalt",
+      "amount": 1500000.00
+    },
+    {
+      "date": "2026-02-01",
       "description": "Dalarna Sweden RP - Bank",
       "amount": 30000.00
     },
@@ -19,4 +24,5 @@
       "amount": 0
     }
   ]
+
 }
