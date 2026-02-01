@@ -5,6 +5,16 @@
   "transactions": [
     {
       "date": "2026-02-01",
+      "description": "Staten - Månadskostnad för såldning av anstalld och sjukhus (för alltid)",
+      "amount": 50000000.00
+    },
+     {
+      "date": "2026-02-01",
+      "description": "Staten - Anstallt / Sjukhus / Såld",
+      "amount": 2400000000.00
+    },
+    {
+      "date": "2026-02-01",
       "description": "Staten - Sjukhus",
       "amount": 2500000.00
     },
@@ -51,6 +61,7 @@
   ]
 
 }
+
 
 
 
