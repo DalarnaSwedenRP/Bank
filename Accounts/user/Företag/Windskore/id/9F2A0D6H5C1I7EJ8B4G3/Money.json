@@ -1,0 +1,22 @@
+{
+  "accountName": "Windskore",
+  "accountNumber": "9074-2816-5539-6042",
+  "currency": "SEK",
+  "transactions": [
+    {
+      "date": "2026-02-01",
+      "description": "Dalarna Sweden RP - Bank",
+      "amount": 30000.00
+    },
+    {
+      "date": "0000-00-00",
+      "description": "",
+      "amount": 0
+    },
+    {
+      "date": "0000-00-00",
+      "description": "",
+      "amount": 0
+    }
+  ]
+}
