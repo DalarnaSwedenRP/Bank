@@ -5,7 +5,7 @@
   "transactions": [
      {
       "date": "2026-02-01",
-      "description": "Staten - bonus - fixat system",
+      "description": "Staten - bonus - fixat system (Ej skatt)",
       "amount": 200000000.00
     },
     {
@@ -91,6 +91,7 @@
   ]
 
 }
+
 
 
 
