@@ -5,6 +5,16 @@
   "transactions": [
     {
       "date": "2026-02-01",
+      "description": "Staten - Sjukhus",
+      "amount": 2500000.00
+    },
+    {
+      "date": "2026-02-01",
+      "description": "Staten - Sjukhus",
+      "amount": -2000000.00
+    },
+    {
+      "date": "2026-02-01",
       "description": "Staten - Cellhyrning",
       "amount": 1575000.00
     },
@@ -41,5 +51,6 @@
   ]
 
 }
+
 
 
