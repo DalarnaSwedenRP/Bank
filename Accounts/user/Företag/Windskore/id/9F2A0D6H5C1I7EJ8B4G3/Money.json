@@ -5,6 +5,11 @@
   "transactions": [
     {
       "date": "2026-02-01",
+      "description": "Staten - mark - såld",
+      "amount": 1200000000.00
+    },
+    {
+      "date": "2026-02-01",
       "description": "Staten - mark",
       "amount": -500000000.00
     },
@@ -81,6 +86,7 @@
   ]
 
 }
+
 
 
 
