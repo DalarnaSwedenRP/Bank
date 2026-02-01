@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adrian Munter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --card: #0f1117;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --danger: #f97373;
+      --success: #4ade80;
+      --border: #1f2933;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font);
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .app {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: linear-gradient(145deg, #020617, #020617 40%, #020617 60%, #020617);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(148, 163, 184, 0.05);
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(56, 189, 248, 0.16), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .bank-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+      font-size: 0.75rem;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .account-block {
+      margin-bottom: 18px;
+    }
+
+    .account-name {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .account-number {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .balance-block {
+      margin-top: 16px;
+    }
+
+    .balance-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .balance-value {
+      font-size: 2.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .balance-currency {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .balance-trend {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trend-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      font-size: 0.75rem;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .meta-item-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      margin-bottom: 2px;
+    }
+
+    .meta-item-value {
+      color: #e5e7eb;
+    }
+
+    .transactions-card .card-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .transactions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .transactions-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .filter-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .transactions-table-wrapper {
+      margin-top: 8px;
+      border-radius: 12px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      overflow: hidden;
+      max-height: 420px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .transactions-header-row {
+      display: grid;
+      grid-template-columns: 1.2fr 2.2fr 1.2fr;
+      padding: 10px 14px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .transactions-body {
+      overflow-y: auto;
+    }
+
+    .transaction-row {
+      display: grid;
+      grid-template-columns: 1.2fr 2.2fr 1.2fr;
+      padding: 9px 14px;
+      font-size: 0.85rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .transaction-row:nth-child(2n) {
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .transaction-date {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .transaction-description {
+      color: #e5e7eb;
+    }
+
+    .transaction-amount {
+      text-align: right;
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .transaction-amount.negative {
+      color: var(--danger);
+    }
+
+    .transaction-amount.positive {
+      color: var(--success);
+    }
+
+    .empty-state {
+      padding: 18px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      font-size: 0.7rem;
+      color: #bfdbfe;
+    }
+
+    .error-banner {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(248, 113, 113, 0.08);
+      border: 1px solid rgba(248, 113, 113, 0.4);
+      font-size: 0.8rem;
+      color: #fecaca;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Vänster: kontoöversikt -->
+    <section class="card">
+      <div class="card-inner">
+        <div class="header">
+          <div class="bank-name">Dalarna Sweden RP - Bank</div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            Aktivt konto
+          </div>
+        </div>
+
+        <div class="account-block">
+          <div class="account-name" id="accountName">Laddar...</div>
+          <div class="account-number" id="accountNumber">4829-1057-7361-2948</div>
+        </div>
+
+        <div class="balance-block">
+          <div class="balance-label">Tillgängligt saldo</div>
+          <div class="balance-value">
+            <span id="balanceValue">0</span>
+            <span class="balance-currency" id="balanceCurrency">SEK</span>
+          </div>
+          <div class="balance-trend" id="balanceTrend">
+            <span class="trend-pill">Senaste transaktioner</span>
+            <span id="trendText">Ingen data ännu</span>
+          </div>
+        </div>
+
+        <div class="meta-row">
+          <div>
+            <div class="meta-item-label">Senaste uppdatering</div>
+            <div class="meta-item-value" id="lastUpdated">-</div>
+          </div>
+          <div>
+            <div class="meta-item-label">Antal transaktioner</div>
+            <div class="meta-item-value" id="transactionCount">0</div>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          <span>Data hämtas från <code>DSR Bank Servers</code>.</span>
+        </div>
+
+        <div id="errorBox" class="error-banner" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- Höger: transaktioner -->
+    <section class="card transactions-card">
+      <div class="card-inner">
+        <div class="transactions-header">
+          <div class="transactions-title">Transaktioner</div>
+          <div class="filter-pill">
+            Senaste först
+          </div>
+        </div>
+
+        <div class="transactions-table-wrapper">
+          <div class="transactions-header-row">
+            <div>Datum</div>
+            <div>Från</div>
+            <div>Belopp</div>
+          </div>
+          <div class="transactions-body" id="transactionsBody">
+            <div class="empty-state">
+              Inga transaktioner att visa.
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          <span><code></code>.</span>
+          <span></span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    async function loadMoneyData() {
+      const errorBox = document.getElementById("errorBox");
+      errorBox.style.display = "none";
+      errorBox.textContent = "";
+
+      try {
+        const res = await fetch("Money.json", {
+          cache: "no-store"
+        });
+
+        if (!res.ok) {
+          throw new Error("Kunde inte läsa Money.json (" + res.status + ")");
+        }
+
+        const data = await res.json();
+        renderAccount(data);
+      } catch (err) {
+        console.error(err);
+        errorBox.style.display = "block";
+        errorBox.textContent =
+          "Fel vid läsning av Money.json. Kontakta banken så snabbt som möjligt. Fel: " +
+          err.message;
+      }
+    }
+
+    function formatCurrency(amount, currency) {
+      try {
+        return new Intl.NumberFormat("sv-SE", {
+          style: "currency",
+          currency: currency || "SEK",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(amount);
+      } catch {
+        return amount.toFixed(2) + " " + (currency || "SEK");
+      }
+    }
+
+    function renderAccount(data) {
+      const accountNameEl = document.getElementById("accountName");
+      const accountNumberEl = document.getElementById("accountNumber");
+      const balanceValueEl = document.getElementById("balanceValue");
+      const balanceCurrencyEl = document.getElementById("balanceCurrency");
+      const lastUpdatedEl = document.getElementById("lastUpdated");
+      const transactionCountEl = document.getElementById("transactionCount");
+      const transactionsBodyEl = document.getElementById("transactionsBody");
+      const trendTextEl = document.getElementById("trendText");
+
+      const accountName = data.accountName || "Okänt konto";
+      const accountNumber = data.accountNumber || "####-####-####-####";
+      const currency = data.currency || "SEK";
+      const transactions = Array.isArray(data.transactions) ? data.transactions : [];
+
+      accountNameEl.textContent = accountName;
+      accountNumberEl.textContent = accountNumber;
+      balanceCurrencyEl.textContent = currency;
+
+      let balance = 0;
+      transactions.forEach(t => {
+        if (typeof t.amount === "number") {
+          balance += t.amount;
+        }
+      });
+
+      balanceValueEl.textContent = formatCurrency(balance, currency);
+
+      transactionCountEl.textContent = transactions.length.toString();
+      lastUpdatedEl.textContent = new Date().toLocaleString("sv-SE");
+
+      transactionsBodyEl.innerHTML = "";
+
+      if (transactions.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent = "Inga transaktioner att visa.";
+        transactionsBodyEl.appendChild(empty);
+        trendTextEl.textContent = "Ingen transaktionshistorik.";
+        return;
+      }
+
+      const sorted = [...transactions].sort((a, b) => {
+        const da = new Date(a.date || 0).getTime();
+        const db = new Date(b.date || 0).getTime();
+        return db - da;
+      });
+
+      sorted.forEach(t => {
+        const row = document.createElement("div");
+        row.className = "transaction-row";
+
+        const dateEl = document.createElement("div");
+        dateEl.className = "transaction-date";
+        dateEl.textContent = t.date || "-";
+
+        const descEl = document.createElement("div");
+        descEl.className = "transaction-description";
+        descEl.textContent = t.description || "Transaktion";
+
+        const amountEl = document.createElement("div");
+        amountEl.className = "transaction-amount";
+        if (typeof t.amount === "number") {
+          amountEl.textContent = formatCurrency(t.amount, currency);
+          amountEl.classList.add(t.amount < 0 ? "negative" : "positive");
+        } else {
+          amountEl.textContent = "-";
+        }
+
+        row.appendChild(dateEl);
+        row.appendChild(descEl);
+        row.appendChild(amountEl);
+
+        transactionsBodyEl.appendChild(row);
+      });
+
+      const latest = sorted[0];
+      if (latest && typeof latest.amount === "number") {
+        const direction = latest.amount >= 0 ? "upp" : "ned";
+        const typeText = latest.amount >= 0 ? "insättning" : "köp";
+        trendTextEl.textContent =
+          `Senaste ${typeText}: ${formatCurrency(latest.amount, currency)} (${direction})`;
+      } else {
+        trendTextEl.textContent = "Senaste transaktion saknar belopp.";
+      }
+    }
+
+    loadMoneyData();
+  </script>
+</body>
+</html>

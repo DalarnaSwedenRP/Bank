@@ -1,0 +1,22 @@
+{
+  "accountName": "Adrian Munter",
+  "accountNumber": "4829-1057-7361-2948",
+  "currency": "SEK",
+  "transactions": [
+    {
+      "date": "2026-02-01",
+      "description": "Dalarna Sweden RP - Bank",
+      "amount": 139425.00
+    },
+    {
+      "date": "0000-00-00",
+      "description": "",
+      "amount": 00.00
+    },
+    {
+      "date": "0000-00-00",
+      "description": "",
+      "amount": 00.00
+    }
+  ]
+}
