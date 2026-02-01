@@ -6,7 +6,12 @@
     {
       "date": "2026-02-01",
       "description": "Staten - Cellhyrning",
-      "amount": 1500000.00
+      "amount": 1575000.00
+    },
+    {
+      "date": "2026-02-01",
+      "description": "Staten - Cellhyrning",
+      "amount": 225000.00
     },
     {
       "date": "2026-02-01",
@@ -36,4 +41,5 @@
   ]
 
 }
+
 
