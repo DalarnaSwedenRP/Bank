@@ -3,76 +3,6 @@
   "accountNumber": "9074-2816-5539-6042",
   "currency": "SEK",
   "transactions": [
-     {
-      "date": "2026-02-01",
-      "description": "Staten - bonus - fixat system (Ej skatt)",
-      "amount": 200000000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - mark - såld",
-      "amount": 1200000000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - mark",
-      "amount": -500000000.00
-    },
-     {
-      "date": "2026-02-01",
-      "description": "Skatt (5%), betalat på allt under",
-      "amount": -121516500.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - Endast betala 5% skatt",
-      "amount": -20000000.00
-    },
-     {
-      "date": "2026-02-01",
-      "description": "Staten - Gratis regisering hos PRV",
-      "amount": -2000000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - Månadskostnad för såldning av anstalld och sjukhus (för alltid)",
-      "amount": 50000000.00
-    },
-     {
-      "date": "2026-02-01",
-      "description": "Staten - Anstallt / Sjukhus / Såld",
-      "amount": 2400000000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - Sjukhus",
-      "amount": 2500000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - Sjukhus",
-      "amount": -2000000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - Cellhyrning",
-      "amount": 1575000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - Cellhyrning",
-      "amount": 225000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Staten - Fängelse",
-      "amount": -1500000.00
-    },
-    {
-      "date": "2026-02-01",
-      "description": "Dalarna Sweden RP - Lån - Ej Avbetalt",
-      "amount": 1500000.00
-    },
     {
       "date": "2026-02-01",
       "description": "Dalarna Sweden RP - Bank",
@@ -91,6 +21,7 @@
   ]
 
 }
+
 
 
 
